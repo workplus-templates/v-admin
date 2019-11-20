@@ -1,12 +1,22 @@
 <template>
   <div class="dashboard-container">
-    <p>这是首页</p>
+    <div class="dashboard-text">
+      name:{{ name }}
+    </div>
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import { UserModule } from '@/store/modules/user'
+
+@Component({
   name: 'Dashboard'
+})
+export default class extends Vue {
+  get name() {
+    return UserModule.name
+  }
 }
 </script>
 
@@ -14,6 +24,11 @@ export default {
 .dashboard {
   &-container {
     margin: 30px;
+  }
+
+  &-text {
+    font-size: 30px;
+    line-height: 46px;
   }
 }
 </style>
