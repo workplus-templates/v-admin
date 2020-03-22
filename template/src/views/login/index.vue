@@ -73,9 +73,8 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { Route } from 'vue-router'
-import { Dictionary } from 'vuex'
+import { Dictionary } from 'vue-router/types/router'
 import { Form as ElForm, Input } from 'element-ui'
-import { UserModule } from '@/store/modules/user'
 
 @Component({
   name: 'Login'
@@ -125,7 +124,6 @@ export default class extends Vue {
   }
 
   private async handleLogin() {
-    await UserModule.Login(this.loginForm)
     this.$router.push({
       path: this.redirect || '/',
       query: this.otherQuery

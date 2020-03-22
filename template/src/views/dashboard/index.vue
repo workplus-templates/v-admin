@@ -1,22 +1,15 @@
 <template>
-  <div class="dashboard-container">
-    <div class="dashboard-text">
-      name:{{ name }}
-    </div>
-  </div>
+  <div class="dashboard-container" />
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { UserModule } from '@/store/modules/user'
 
 @Component({
   name: 'Dashboard'
 })
 export default class extends Vue {
-  get name() {
-    return UserModule.name
-  }
+
 }
 </script>
 

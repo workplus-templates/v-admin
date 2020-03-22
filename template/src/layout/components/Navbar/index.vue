@@ -10,35 +10,12 @@
       id="breadcrumb-container"
       class="breadcrumb-container"
     />
-    <div class="right-menu">
-      <el-dropdown
-        class="avatar-container right-menu-item hover-effect"
-        trigger="click"
-      >
-        <div class="avatar-wrapper">
-          <img
-            :src="avatar + '?imageView2/1/w/80/h/80'"
-            class="user-avatar"
-          >
-          <i class="el-icon-caret-bottom" />
-        </div>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>
-            <span
-              style="display:block;"
-              @click="logout"
-            >LogOut</span>
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { AppModule } from '@/store/modules/app'
-import { UserModule } from '@/store/modules/user'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import Hamburger from '@/components/Hamburger/index.vue'
 
@@ -58,17 +35,8 @@ export default class extends Vue {
     return AppModule.device.toString()
   }
 
-  get avatar() {
-    return UserModule.avatar
-  }
-
   private toggleSideBar() {
     AppModule.ToggleSideBar(false)
-  }
-
-  private async logout() {
-    await UserModule.LogOut()
-    this.$router.push(`/login?redirect=${this.$route.fullPath}`)
   }
 }
 </script>
