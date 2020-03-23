@@ -31,11 +31,6 @@ export default new Router({
       meta: { hidden: true }
     },
     {
-      path: '/404',
-      component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue'),
-      meta: { hidden: true }
-    },
-    {
       path: '/',
       component: Layout,
       redirect: '/dashboard',
@@ -98,19 +93,6 @@ export default new Router({
           component: () =>
             import(/* webpackChunkName: "menu2" */ '@/views/nested/menu2/index.vue'),
           meta: { title: 'Menu2' }
-        }
-      ]
-    },
-    {
-      path: 'external-link',
-      component: Layout,
-      children: [
-        {
-          path: 'https://github.com/Armour/vue-typescript-admin-template',
-          meta: {
-            title: 'External Link',
-            icon: 'link'
-          }
         }
       ]
     },

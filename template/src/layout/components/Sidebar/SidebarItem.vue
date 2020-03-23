@@ -65,7 +65,6 @@
 import path from 'path'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { Route, RouteConfig } from 'vue-router'
-import { isExternal } from '@/utils/validate'
 import SidebarItemLink from './SidebarItemLink.vue'
 
 @Component({
@@ -115,12 +114,6 @@ export default class extends Vue {
   }
 
   private resolvePath(routePath: string) {
-    if (isExternal(routePath)) {
-      return routePath
-    }
-    if (isExternal(this.basePath)) {
-      return this.basePath
-    }
     return path.resolve(this.basePath, routePath)
   }
 }
