@@ -75,6 +75,7 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import { Route } from 'vue-router'
 import { Dictionary } from 'vue-router/types/router'
 import { Form as ElForm, Input } from 'element-ui'
+import { UserModule } from '@/store/modules/user'
 
 @Component({
   name: 'Login'
@@ -124,9 +125,20 @@ export default class extends Vue {
   }
 
   private async handleLogin() {
-    this.$router.push({
-      path: this.redirect || '/',
-      query: this.otherQuery
+    (this.$refs.loginForm as ElForm).validate(async(valid: boolean) => {
+      if (valid) {
+        this.loading = true
+        await UserModule.Login(this.loginForm)
+        this.$router.push({
+          path: this.redirect || '/',
+          query: this.otherQuery
+        })
+        setTimeout(() => {
+          this.loading = false
+        }, 0.5 * 1000)
+      } else {
+        return false
+      }
     })
   }
 
