@@ -7,6 +7,7 @@
       :active-text-color="variables.menuActiveText"
       :unique-opened="false"
       :collapse-transition="false"
+      :default-active="activeMenu"
       mode="vertical"
     >
       <sidebar-item
@@ -47,6 +48,10 @@ export default class extends Vue {
 
   get isCollapse() {
     return !this.sidebar.opened
+  }
+
+  get activeMenu() {
+    return this.$route.path;
   }
 }
 </script>
